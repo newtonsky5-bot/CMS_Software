@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Mail, Lock, ArrowRight, Eye, EyeOff } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
 
-const Login = () => {
+export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,176 +17,130 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    // Simulate login - replace with your actual API call
+
     setTimeout(() => {
-      console.log("Login submitted:", form);
-      alert("Login functionality ready! Connect to your backend API.");
+      console.log(form);
       setIsLoading(false);
+      alert("Connect this to your backend API");
     }, 1000);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-4">
-      <div className="bg-white w-full max-w-6xl rounded-2xl shadow-2xl grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-100 p-4">
+      <div className="w-full max-w-6xl bg-white rounded-2xl shadow-2xl grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
 
-        {/* Left Side - Lottie Animation Section */}
-        <div className="relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 p-12 flex flex-col justify-center items-center text-white overflow-hidden">
-          {/* Decorative Elements */}
-          <div className="absolute top-0 left-0 w-64 h-64 bg-white opacity-10 rounded-full -translate-x-32 -translate-y-32"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-white opacity-10 rounded-full translate-x-48 translate-y-48"></div>
-          
-          {/* Content */}
-          <div className="relative z-10 w-full">
-            <div className="mb-8">
-              <h1 className="text-4xl font-bold mb-2">Welcome to CMS</h1>
-              <div className="h-1 w-20 bg-white rounded-full"></div>
-            </div>
+        {/* LEFT SIDE - LOTTIE */}
+        <div className="hidden lg:flex flex-col justify-center items-center bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 p-12 text-white">
+          <h1 className="text-4xl font-bold mb-4">Welcome to CMS</h1>
+          <p className="text-white/80 mb-8 text-center max-w-md">
+            Manage your content securely with our modern CMS platform
+          </p>
 
-            {/* Lottie Animation Container */}
-            <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-8 mb-8 shadow-xl">
-              <iframe
-                src="https://lottie.host/embed/42262329-34a5-4d89-86af-4ed6d329484f/TZGvJxtwid.lottie"
-                className="w-full h-80 border-0"
-                title="Lottie Animation"
-              />
-            </div>
-
-            {/* Feature List */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
-                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                </div>
-                <p className="text-sm font-medium">Secure & Reliable Platform</p>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
-                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                </div>
-                <p className="text-sm font-medium">Advanced Content Management</p>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
-                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                </div>
-                <p className="text-sm font-medium">Real-time Collaboration</p>
-              </div>
-            </div>
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 shadow-lg">
+            <iframe
+              src="https://lottie.host/embed/42262329-34a5-4d89-86af-4ed6d329484f/TZGvJxtwid.lottie"
+              className="w-[320px] h-[320px] border-0"
+              title="CMS Animation"
+            />
           </div>
         </div>
 
-        {/* Right Side - Login Form Section */}
-        <div className="p-12 flex flex-col justify-center">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">
-              Sign In
-            </h2>
-            <p className="text-gray-500">
-              Enter your credentials to access your account
-            </p>
-          </div>
+        {/* RIGHT SIDE - LOGIN */}
+        <div className="p-10 sm:p-14 flex flex-col justify-center">
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">
+            Sign In
+          </h2>
+          <p className="text-gray-500 mb-8">
+            Enter your credentials to continue
+          </p>
 
-          <div className="space-y-6">
-            {/* Email Field */}
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Email */}
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Email Address
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Email
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-gray-400" />
-                </div>
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
                   type="email"
                   name="email"
                   value={form.email}
                   onChange={handleChange}
                   placeholder="admin@example.com"
-                  className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition outline-none"
+                  className="w-full pl-12 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
+                  required
                 />
               </div>
             </div>
 
-            {/* Password Field */}
+            {/* Password */}
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
                 Password
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-400" />
-                </div>
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
                   value={form.password}
                   onChange={handleChange}
                   placeholder="••••••••"
-                  className="w-full pl-12 pr-12 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition outline-none"
+                  className="w-full pl-12 pr-12 py-3 border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none"
+                  required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-4 flex items-center"
+                  className="absolute right-4 top-1/2 -translate-y-1/2"
                 >
                   {showPassword ? (
-                    <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                    <EyeOff className="text-gray-400" />
                   ) : (
-                    <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                    <Eye className="text-gray-400" />
                   )}
                 </button>
               </div>
             </div>
 
-            {/* Remember Me & Forgot Password */}
-            <div className="flex items-center justify-between">
-              <label className="flex items-center">
-                <input
-                  type="checkbox"
-                  className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
-                />
-                <span className="ml-2 text-sm text-gray-600">Remember me</span>
+            {/* Remember & Forgot */}
+            <div className="flex justify-between items-center text-sm">
+              <label className="flex items-center gap-2">
+                <input type="checkbox" className="accent-indigo-600" />
+                Remember me
               </label>
-              <button className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+              <button className="text-indigo-600 hover:underline">
                 Forgot password?
               </button>
             </div>
 
-            {/* Submit Button */}
+            {/* Button */}
             <button
-              onClick={handleSubmit}
+              type="submit"
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-xl font-semibold hover:from-indigo-700 hover:to-purple-700 transition shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 group"
+              className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition disabled:opacity-50"
             >
-              {isLoading ? (
-                "Signing in..."
-              ) : (
+              {isLoading ? "Signing in..." : (
                 <>
-                  Sign In
-                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  Sign In <ArrowRight size={18} />
                 </>
               )}
             </button>
-          </div>
+          </form>
 
-          {/* Footer */}
-          <div className="mt-8 pt-6 border-t border-gray-200">
-            <p className="text-center text-sm text-gray-500">
-              Don't have an account?{" "}
-              <button className="font-medium text-indigo-600 hover:text-indigo-500">
-                Sign up
-              </button>
-            </p>
-          </div>
+          <p className="text-center text-sm text-gray-500 mt-8">
+            Don’t have an account?{" "}
+            <span className="text-indigo-600 font-medium cursor-pointer hover:underline">
+              Sign up
+            </span>
+          </p>
 
-          <p className="text-xs text-gray-400 text-center mt-6">
-            © {new Date().getFullYear()} CMS Software. All rights reserved.
+          <p className="text-xs text-gray-400 text-center mt-4">
+            © {new Date().getFullYear()} CMS Software
           </p>
         </div>
       </div>
     </div>
   );
-};
-
-export default Login;
+}
